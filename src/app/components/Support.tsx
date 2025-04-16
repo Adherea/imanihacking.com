@@ -14,7 +14,7 @@ import Image from "next/image";
 function Support() {
   return (
     <section className="bg-[#a2d9ff] md:py-6 md:px-5 w-full overflow-hidden py-5">
-      <div>
+      <div className="">
         <h1 className="text-white text-2xl md:text-4xl text-center py-5">Partners:</h1>
       </div>
       <div className={`slideAnimation flex items-center gap-8 py-10`}>

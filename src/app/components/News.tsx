@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -75,7 +75,7 @@ const newss = [
     date: "2022/October ",
     desc: "CEO of Darajapan Inc. is selected as SIDO NEXT INNOVATOR - Develop Next Generation Innovators.",
     images: news6,
-    linkurl: "https://ynps.yakuji.co.jp/9033.html",
+    // linkurl: "https://ynps.yakuji.co.jp/9033.html",
   },
   {
     id: "news7",
@@ -94,11 +94,14 @@ const newss = [
 ];
 
 function News() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleNews = showAll ? newss : newss.slice(0, 3);
+
   return (
     <section id="news" data-aos="fade-up">
       <div className="max-w-7xl mx-auto">
         <h1 className="border-b-2 border-[#0E9AC5] w-fit mx-auto text-3xl md:text-4xl font-medium my-5">News</h1>
-        <div className="">
+        <div className="my-5">
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             spaceBetween={50}
@@ -110,38 +113,29 @@ function News() {
             onSlideChange={() => console.log("slide change")}
           >
             <SwiperSlide>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 items-center px-5 py-10 gap-6 ">
-                {newss.map((x, index) => {
-                  return (
-                    <>
-                      <div onClick={() => window.open(x.linkurl, "_blank")} key={index} className=" h-full w-full  py-9 px-6 rounded-xl text-center hover:cursor-pointer duration-700 hover:-translate-y-6 hover:shadow-2xl ">
-                        <div className="w-fit mx-auto">
-                          <Image src={x.images} alt="picture.png" className="border-2 border-black  md:h-[200px]  " />
-                        </div>
-                        <h1 className="text-3xl py-5">{`${x.date}`}</h1>
-                        <p className="text-sm md:text-base">{`${x.desc}`}</p>
-                      </div>
-                    </>
-                  );
-                })}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 items-center px-5 py-8 gap-6">
+                {visibleNews.map((x, index) => (
+                  <div key={index} onClick={() => window.open(x.linkurl, "_blank")} className="h-full w-full py-9 px-6 rounded-xl text-center hover:cursor-pointer duration-700 hover:-translate-y-6 hover:shadow-2xl">
+                    <div className="w-fit mx-auto">
+                      <Image src={x.images} alt="picture.png" className="border-2 border-black md:h-[200px]" />
+                    </div>
+                    <h1 className="text-3xl py-5">{x.date}</h1>
+                    <p className="text-sm md:text-base">{x.desc}</p>
+                  </div>
+                ))}
               </div>
             </SwiperSlide>
           </Swiper>
+
+          {!showAll && (
+            <div className="text-center my-5">
+              <button onClick={() => setShowAll(true)} className="bg-[#407BFF] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                Load More
+              </button>
+            </div>
+          )}
+
           <hr />
-          <div className="py-20 px-5">
-            {newss.map((x, index) => {
-              return (
-                <>
-                  <div onClick={() => window.open(x.linkurl, "_blank")} key={index} className=" h-full w-full border-b-2  border-b-slate-700 py-3  ">
-                    <div className="px-1 py-3">
-                      <h1 className="text-2xl md:text-3xl py-2 ">{`${x.date}`}</h1>
-                      <p className="text-sm md:text-base">{`${x.desc}`}</p>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
@@ -13,9 +13,14 @@ import teach2 from "../../../public/images/support/daniel.jp.jpg";
 import teach3 from "../../../public/images/Emmanuel Tarimo.jpg";
 import teach4 from "../../../public/images/support/nuru.jpg";
 import teach5 from "../../../public/images/support/Gery.png";
+import teach6 from "../../../public/images/support/Martin.jpg";
+import teach7 from "../../../public/images/support/Tumwine.jpg";
+import teach8 from "../../../public/images/support/Gyagenda .jpeg";
 import mentor1 from "../../../public/images/support/saki.png";
 import mentor2 from "../../../public/images/support/naho.png";
 import mentor3 from "../../../public/images/support/Douglus.png";
+import Course from "../pages/course/page";
+
 const instructors = [
   {
     id: "instructor1",
@@ -57,6 +62,30 @@ const instructors = [
     desc: "8+ years of hands-on experience in software development and testing, spanning analysis, data modeling, design, project delivery, and collaboration across all organizational levels.",
     profil: "https://www.linkedin.com/in/gerrysabar/",
   },
+  {
+    id: "instructor6",
+    image: teach6,
+    name: "Martin Tumwine",
+    specialization: "CEO of Zaantu Technologies",
+    desc: "A decade of experience as a software engineer, techpreneur and Chief Technology consultation services. I lead engineering teams and help Businesses align the technology with their business vision. ",
+    profil: "https://linkedin.com/in/martin-tumwine",
+  },
+  {
+    id: "instructor7",
+    image: teach7,
+    name: "Dr. Lisa Tumwine ",
+    specialization: "Managing Director @lila Haven",
+    desc: "10 years of experience as a pharmacist, entrepreneur and mental wellness expert. A managing director of Lila Haven and coaching entrepreneurs to manage their mental health. ",
+    profil: "https://www.linkedin.com/in/dr-lisa-tumwine-21a383211/",
+  },
+  {
+    id: "instructor8",
+    image: teach8,
+    name: "Gyagenda Moshin ",
+    specialization: "Managing Director @lila Haven",
+    desc: "I am a passionate Full-Stack Software Developer with over 3 years of experience specializing in building scalable and user-friendly web and mobile applications. Proficient in PHP (Laravel), flutter, html tailwind css and MySQL, I combine technical expertise with a commitment to delivering impactful solutions. I currently work with GNA Company Limited, where I contribute to innovative projects and foster collaboration across diverse teams. Additionally, as a Teaching Assistant at MUBS",
+    profil: "https://www.linkedin.com/in/gyagenda-moshin-443a17222/?originalSubdomain=ug",
+  },
 ];
 
 const mentorss = [
@@ -87,9 +116,19 @@ const mentorss = [
 ];
 
 function Teach() {
+  const [showAll, setShowAll] = useState(false);
+
+  function togel(e) {
+    setShowAll((e) => !e);
+  }
+
   return (
     <>
       <section id="members" data-aos="fade-up">
+        <div className="">
+          <Course />
+        </div>
+
         <div className="">
           <div className="container mx-auto px-5 md:px-8 py-5">
             <Swiper
@@ -102,28 +141,31 @@ function Teach() {
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
-              <SwiperSlide>
+              <SwiperSlide className="mb-10">
                 <h1 className="border-b-2 border-[#0E9AC5] w-fit mx-auto text-3xl md:text-4xl font-medium my-5">Instructors</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hover:cursor-grab active:cursor-grabbing ">
-                  {instructors.map((instructor, index) => (
-                    <div key={index} className="bg-[#58BBFF] rounded-2xl flex flex-col">
-                      <Image className="md:w-1/3 w-1/2 mx-auto rounded-full border-4 my-5 border-white" src={instructor.image} alt="instructor.jpg" />
-                      <div className="bg-white rounded-2xl py-5 px-6 mt-3 h-full flex flex-col justify-between">
-                        <div>
-                          <h1 className="text-center text-3xl">{`${instructor.name}`}</h1>
-                          <h4 className="text-center py-5">
-                            <span className="font-semibold">Specialization:</span> {`${instructor.specialization}`}
-                          </h4>
-                          <p className="text-center text-sm md:text-base">{`${instructor.desc}`}</p>
-                        </div>
-                        <div className="mx-auto w-fit py-7">
-                          <Link target="_blank" href={`${instructor.profil}`} className="bg-[#58BBFF] text-white rounded-full w-full py-1 px-5">
-                            Visit Me
-                          </Link>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {instructors.slice(0, showAll ? instructors.length : 3).map((instructor, index) => (
+                    <>
+                      <div key={index} className="bg-[#58BBFF] rounded-2xl flex flex-col">
+                        <Image className="md:w-1/3 w-1/2 mx-auto rounded-full border-4 my-5 border-white" src={instructor.image} alt="instructor.jpg" />
+                        <div className="bg-white rounded-2xl py-5 px-6 mt-3 h-full flex flex-col justify-between">
+                          <h1 className="text-center text-3xl">{instructor.name}</h1>
+                          <h4 className="text-center py-5 font-semibold">Specialization: {instructor.specialization}</h4>
+                          <p className="text-center text-sm md:text-base">{instructor.desc}</p>
+                          <div className="mx-auto w-fit py-7">
+                            <Link target="_blank" href={instructor.profil} className="bg-[#58BBFF] text-white rounded-full py-1 px-5">
+                              Visit Me
+                            </Link>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </>
                   ))}
+                </div>
+                <div className="text-center mt-5 w-fit mx-auto">
+                  <button onClick={() => setShowAll(!showAll)} className="bg-[#407BFF] text-white rounded-md px-4 py-1 text-base">
+                    {showAll ? "Show Less" : "Show More"}
+                  </button>
                 </div>
               </SwiperSlide>
 

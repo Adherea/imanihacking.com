@@ -13,8 +13,8 @@ import picture6 from "../../../public/images/assets1/Picture9.png";
 
 function Content() {
   return (
-    <section className="py-14 stripe-background" data-aos="fade-up">
-      <div className="container mx-auto">
+    <section className="py-14 stripe-background">
+      <div className="container mx-auto" data-aos="fade-up">
         <div className="">
           <h1 className="border-b-2 border-[#0E9AC5] w-fit mx-auto text-3xl md:text-3xl font-medium">Contents</h1>
 

@@ -6,7 +6,7 @@ import Link from "next/link";
 function Course() {
   return (
     <section>
-      <nav className="flex items-center text-white justify-between md:px-12 px-5 text-xl bg-[#79c9e0] ">
+      {/* <nav className="flex items-center text-white justify-between md:px-12 px-5 text-xl bg-[#79c9e0] ">
         <div>
           <Image src="/images/logo.png" alt="logo" width={140} height={200} />
         </div>
@@ -19,7 +19,7 @@ function Course() {
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> */}
       <div>
         <h1 className="border-b-2 border-[#0E9AC5] w-fit mx-auto text-2xl md:text-3xl font-medium pt-12">Online Courses</h1>
         <h1 className="text-center max-w-3xl md:text-2xl mx-auto py-10 px-2 text-lg">Your Journey to Excellence Begins Here: Partner with Our International IT Bootcamp and Access Top Tech Talent from Across the World.</h1>

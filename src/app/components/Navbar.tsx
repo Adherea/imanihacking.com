@@ -136,9 +136,9 @@ export default function Navbar() {
             <a href={"#services"} className="relative custom-link">
               Services
             </a>
-            <Link href={`/pages/course`} className="absolute left-0 text-xs w-[8vw] hidden group-hover:block bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded z-10">
+            {/* <Link href={`/pages/course`} className="absolute left-0 text-xs w-[8vw] hidden group-hover:block bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded z-10">
               Company
-            </Link>
+            </Link> */}
           </li>
           <li>
             <a href={"#news"} className="group relative custom-link">
